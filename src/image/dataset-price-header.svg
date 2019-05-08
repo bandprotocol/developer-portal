@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="318px" height="106px" viewBox="0 0 318 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Group 3</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.244727928" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="53.9866569%" y1="100%" x2="53.9866569%" y2="0%" id="linearGradient-2">
+            <stop stop-color="#B2ADFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#B9B2FF" offset="39.8622255%"></stop>
+            <stop stop-color="#FFE7FE" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="52.4291992%" y1="100%" x2="52.4291992%" y2="0%" id="linearGradient-3">
+            <stop stop-color="#FFFFFF" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" offset="100%"></stop>
+        </linearGradient>
+        <ellipse id="path-4" cx="27" cy="47.2244898" rx="4.76470588" ry="4.7755102"></ellipse>
+        <filter x="-104.9%" y="-104.7%" width="309.9%" height="309.4%" filterUnits="objectBoundingBox" id="filter-5">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
+            <feColorMatrix values="0 0 0 0 0.988235294   0 0 0 0 0.525490196   0 0 0 0 0.360784314  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <linearGradient x1="0%" y1="28.9706964%" x2="100%" y2="71.0293036%" id="linearGradient-6">
+            <stop stop-color="#FD8F59" offset="0%"></stop>
+            <stop stop-color="#F6387B" offset="100%"></stop>
+        </linearGradient>
+        <path d="M31.7647059,28.6530612 L27,35.0204082 L22.2352941,28.6530612 L5,28.6530612 C2.23857625,28.6530612 3.38176876e-16,26.414485 0,23.6530612 L0,5 C-3.38176876e-16,2.23857625 2.23857625,1.39544373e-15 5,8.8817842e-16 L49,8.8817842e-16 C51.7614237,-4.52436086e-15 54,2.23857625 54,5 L54,23.6530612 C54,26.414485 51.7614237,28.6530612 49,28.6530612 L31.7647059,28.6530612 Z" id="path-7"></path>
+        <filter x="-31.5%" y="-37.1%" width="163.0%" height="197.1%" filterUnits="objectBoundingBox" id="filter-8">
+            <feOffset dx="0" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.145815122 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <text id="text-9" font-family="SourceCodeProForPowerline-Bold, Source Code Pro for Powerline" font-size="13" font-weight="bold" fill="#FFFFFF">
+            <tspan x="5.29411765" y="17.244898">131.4</tspan>
+        </text>
+        <filter x="-16.1%" y="-29.4%" width="132.2%" height="182.4%" filterUnits="objectBoundingBox" id="filter-10">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.15 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Main" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Price" transform="translate(-843.000000, -127.000000)">
+            <g id="Group-3" transform="translate(844.000000, 127.000000)">
+                <g id="Group-2" transform="translate(197.000000, 0.000000)">
+                    <circle id="Oval" fill="url(#linearGradient-1)" opacity="0.811546689" cx="98" cy="68" r="22"></circle>
+                    <circle id="Oval-Copy" fill="#FFFFFF" opacity="0.338681176" cx="80.5" cy="51.5" r="16.5"></circle>
+                    <circle id="Oval-Copy-4" fill="#FFFFFF" opacity="0.0936104911" cx="16.5" cy="37.5" r="16.5"></circle>
+                    <ellipse id="Oval-Copy-2" fill="#FFFFFF" opacity="0.405924479" cx="33.5" cy="9" rx="9.5" ry="9"></ellipse>
+                    <circle id="Oval-Copy-3" fill="#FFFFFF" opacity="0.082124256" cx="94.5" cy="3.5" r="3.5"></circle>
+                </g>
+                <g id="price-feed-copy" transform="translate(0.000000, 7.000000)">
+                    <g id="Group-5" fill="url(#linearGradient-2)" stroke="url(#linearGradient-3)" stroke-width="2">
+                        <path d="M0,99 C0,91.703315 33.7131307,42.2931467 52.2941176,54.0833333 C80.1655981,71.7686133 83.8736561,72.9343598 97.6118436,64.6368717 C111.350031,56.3393835 126.71104,0 152.016005,0 C177.320971,0 175.334357,63.3610861 201.566942,53.8037475 C214.97159,48.9200215 218.166249,37.7768839 230,44 C238.784979,48.6198325 253.256776,76.1200227 270.519429,88.2769618 C278.02726,93.5642286 291,93.5642286 291,99" id="Shape"></path>
+                    </g>
+                    <g id="Group-6" transform="translate(26.000000, 9.000000)">
+                        <g id="Oval">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-5)" xlink:href="#path-4"></use>
+                            <use stroke="#FA656A" stroke-width="2" fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-4"></use>
+                        </g>
+                        <g id="Combined-Shape">
+                            <use fill="black" fill-opacity="1" filter="url(#filter-8)" xlink:href="#path-7"></use>
+                            <use fill="url(#linearGradient-6)" fill-rule="evenodd" xlink:href="#path-7"></use>
+                        </g>
+                        <g id="131.4" fill="#FFFFFF" fill-opacity="1">
+                            <use filter="url(#filter-10)" xlink:href="#text-9"></use>
+                            <use xlink:href="#text-9"></use>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

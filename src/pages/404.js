@@ -5,12 +5,12 @@ export default props => (
   <Flex flexDirection="column" alignItems="center">
     <Box my={4}>
       <Text fontWeight={600} fontSize={24}>
-        404: You've wondered too far!
+        404: It's a shame!
       </Text>
     </Box>
 
     <Box>
-      <Text fontSize={16}>No block is found here</Text>
+      <Text fontSize={16}>We don't have anything here</Text>
     </Box>
   </Flex>
 )
