@@ -112,7 +112,7 @@ export const formatPricePairsForGraph = pairs => {
   pairs.forEach(p => p.feed.forEach(({ time }) => timeset.add(time.valueOf())))
   const timeline = [...timeset].sort()
   const takeEvery = Math.ceil(timeline.length / 100)  // At most 100 data points
-  const filteredTimeline = timeline.filter((e, idx) => idx % takeEvery == 0)
+  const filteredTimeline = timeline.filter((e, idx) => idx % takeEvery == 0 || idx === timeline.length - 1)
   const timetable = [['Time', ...pairs.map(p => p.name)]]
 
   // Iterate through the filtered timeline and build a square matrix
@@ -123,7 +123,7 @@ export const formatPricePairsForGraph = pairs => {
   filteredTimeline.map(t => {
     const row = [new Date(t)]
     pairs.map(({ address, feed }) => {
-      if (
+      while (
         currentIndex[address] < feed.length &&
         t >= feed[currentIndex[address]].time.valueOf()
       )
