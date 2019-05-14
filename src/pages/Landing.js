@@ -406,7 +406,7 @@ export default props => (
         >
           <Box style={{ maxWidth: 600 }}>
             <Text fontSize={22} fontWeight="700" color="#85EEBB" lineHeight={2}>
-              Join us in Band Protocol testnet
+              Join our testnet
             </Text>
             <Card
               borderLeft="solid 8px #85EEBB"
