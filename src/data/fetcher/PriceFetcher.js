@@ -80,11 +80,13 @@ export const CurrentPriceFetcher = withRouter(
       } = await Utils.graphqlRequest(allPriceFeedQL())
 
       const { type } = this.props
-
       return nodes
-        .filter(
-          ({ pair }) => pair.match(/USD/g) && ALLTYPE[type].includes(pair),
-        )
+        .filter(({ pair }) => {
+          if (type && type === 'ALL') {
+            return true
+          }
+          return pair.match(/USD/g) && type && ALLTYPE[type].includes(pair)
+        })
         .map(({ lastUpdate, pair, value }) => ({
           pair,
           value: Utils.fromBlockchainUnit(value),

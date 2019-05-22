@@ -102,7 +102,7 @@ const renderDataPoints = pairs => (
 )
 
 export default class PricePage extends React.Component {
-  state = { type: 'FX' }
+  state = { type: 'CRYPTO' }
 
   render() {
     return (
@@ -123,6 +123,18 @@ export default class PricePage extends React.Component {
       >
         <PageContainer>
           <Flex mt="-100px" mx="-8px">
+            <PriceCountByTypeFetcher type="CRYPTO">
+              {({ fetching, data }) => (
+                <DatasetTab
+                  mx="8px"
+                  title="Cryptocurrency"
+                  subtitle={fetching ? 'Loading ...' : `${data} Pairs`}
+                  src={BaseballSrc}
+                  active={this.state.type === 'CRYPTO'}
+                  onClick={() => this.setState({ type: 'CRYPTO' })}
+                />
+              )}
+            </PriceCountByTypeFetcher>
             <PriceCountByTypeFetcher type="FX">
               {({ fetching, data }) => (
                 <DatasetTab
@@ -156,18 +168,6 @@ export default class PricePage extends React.Component {
                   src={AmericanFootballSrc}
                   active={this.state.type === 'STOCK'}
                   onClick={() => this.setState({ type: 'STOCK' })}
-                />
-              )}
-            </PriceCountByTypeFetcher>
-            <PriceCountByTypeFetcher type="CRYPTO">
-              {({ fetching, data }) => (
-                <DatasetTab
-                  mx="8px"
-                  title="Cryptocurrency"
-                  subtitle={fetching ? 'Loading ...' : `${data} Pairs`}
-                  src={BaseballSrc}
-                  active={this.state.type === 'CRYPTO'}
-                  onClick={() => this.setState({ type: 'CRYPTO' })}
                 />
               )}
             </PriceCountByTypeFetcher>

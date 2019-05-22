@@ -258,7 +258,7 @@ export default props => (
         </Text>
 
         <Flex mx="-16px" style={{ color: colors.text.normal }}>
-          <CurrentPriceFetcher>
+          <CurrentPriceFetcher type="ALL">
             {({ fetching, data }) => (
               <Dataset
                 title="Price Feed"

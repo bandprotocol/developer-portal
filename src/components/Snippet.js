@@ -293,7 +293,7 @@ export default class Snippet extends React.Component {
               >
                 Provider Fee:
               </span>{' '}
-              {this.state.tab === 'solidity' ? '0.0001 ETH/query' : 'free'}
+              {this.state.tab === 'solidity' ? '0.001 ETH/query' : 'free'}
             </Text>
           </Flex>
           {this.state.tab === 'solidity' &&
