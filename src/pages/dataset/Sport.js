@@ -134,7 +134,7 @@ const renderDataPoints = (type, matches) => (
   </React.Fragment>
 )
 
-export default class LotteryPage extends React.Component {
+export default class SportPage extends React.Component {
   state = { type: 'EPL' }
 
   render() {

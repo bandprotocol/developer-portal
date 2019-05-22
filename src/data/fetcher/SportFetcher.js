@@ -185,7 +185,7 @@ export const SportProvidersByTypeTimeTeamFetcher = withRouter(
               providers[dataSourceAddress].scoreAway !== scoreHome
             ) {
               providers[dataSourceAddress].warning =
-                'The provider has previously reported different result for this lottery'
+                'The provider has previously reported different result for this match'
             }
           }
         },

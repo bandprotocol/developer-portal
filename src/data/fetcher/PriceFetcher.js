@@ -3,6 +3,24 @@ import { withRouter } from 'react-router-dom'
 import moment from 'moment'
 import { Utils } from 'band.js'
 
+const ALLTYPE = {
+  FX: ['CNY/USD', 'EUR/USD', 'THB/USD', 'JPY/USD', 'GBP/USD'],
+  COMMODITY: ['XAU/USD', 'XAG/USD'],
+  STOCK: [
+    'AAPL/USD',
+    'AMZN/USD',
+    'FB/USD',
+    'GOOG/USD',
+    'INTC/USD',
+    'MSFT/USD',
+    'NFLX/USD',
+    'NVDA/USD',
+    'ORCL/USD',
+    'SBUX/USD',
+  ],
+  CRYPTO: ['BTC/USD', 'ETH/USD', 'LTC/USD'],
+}
+
 const allPriceFeedQL = () => `
 {
   allDataPriceFeeds(orderBy: PAIR_ASC) {
@@ -37,10 +55,23 @@ const allProvidersByPairQL = (pair, from) => `
 }
 `
 
+export const PriceCountByTypeFetcher = withRouter(
+  class extends BaseFetcher {
+    shouldFetch(prevProps) {
+      return prevProps.type !== this.props.type
+    }
+
+    async fetch() {
+      const { type } = this.props
+      return ALLTYPE[type].length
+    }
+  },
+)
+
 export const CurrentPriceFetcher = withRouter(
   class extends BaseFetcher {
     shouldFetch(prevProps) {
-      return prevProps.location.pathname !== this.props.location.pathname
+      return prevProps.type !== this.props.type
     }
 
     async fetch() {
@@ -48,11 +79,17 @@ export const CurrentPriceFetcher = withRouter(
         allDataPriceFeeds: { nodes },
       } = await Utils.graphqlRequest(allPriceFeedQL())
 
-      return nodes.map(({ lastUpdate, pair, value }) => ({
-        pair,
-        value: Utils.fromBlockchainUnit(value),
-        lastUpdate: moment(lastUpdate * 1000),
-      }))
+      const { type } = this.props
+
+      return nodes
+        .filter(
+          ({ pair }) => pair.match(/USD/g) && ALLTYPE[type].includes(pair),
+        )
+        .map(({ lastUpdate, pair, value }) => ({
+          pair,
+          value: Utils.fromBlockchainUnit(value),
+          lastUpdate: moment(lastUpdate * 1000),
+        }))
     }
   },
 )
@@ -111,8 +148,10 @@ export const formatPricePairsForGraph = pairs => {
   // Get all the time
   pairs.forEach(p => p.feed.forEach(({ time }) => timeset.add(time.valueOf())))
   const timeline = [...timeset].sort()
-  const takeEvery = Math.ceil(timeline.length / 100)  // At most 100 data points
-  const filteredTimeline = timeline.filter((e, idx) => idx % takeEvery == 0 || idx === timeline.length - 1)
+  const takeEvery = Math.ceil(timeline.length / 100) // At most 100 data points
+  const filteredTimeline = timeline.filter(
+    (e, idx) => idx % takeEvery == 0 || idx === timeline.length - 1,
+  )
   const timetable = [['Time', ...pairs.map(p => p.name)]]
 
   // Iterate through the filtered timeline and build a square matrix
