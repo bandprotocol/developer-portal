@@ -17,11 +17,6 @@ import SportTable from 'components/table/SportTable'
 import DatasetTab from 'components/DatasetTab'
 import Loading from 'components/Loading'
 
-import SoccerSrc from 'image/dataset-soccer.png'
-import BasketballSrc from 'image/dataset-basketball.png'
-import AmericanFootballSrc from 'image/dataset-americanfootball.png'
-import BaseballSrc from 'image/dataset-baseball.png'
-
 const renderDataPoints = (type, matches) => (
   <React.Fragment>
     <Flex>
@@ -143,74 +138,32 @@ export default class SportPage extends React.Component {
     return (
       <PageStructure
         renderHeader={() => (
-          <Flex alignItems="center">
+          <Flex alignItems="center" justifyContent="space-between">
             <Box>
               <Text fontSize="36px" fontWeight="900">
-                Sport Events
+                Identity Events
               </Text>
               <Text fontSize="20px" mt={3}>
-                Accurate live scores from soccer, basketball, American football
-                and baseball.
+                Trusted Identity by Bandprotocol.
               </Text>
             </Box>
+            <Button
+              bg="red"
+              width="100px"
+              onClick={() => console.warn('asdhjadf')}
+              style={{ cursor: 'pointer' }}
+            >
+              Apply
+            </Button>
           </Flex>
         )}
       >
         <PageContainer>
-          <Flex mt="-100px" mx="-8px">
-            <SportCountByTypeFetcher type="EPL">
-              {({ fetching, data }) => (
-                <DatasetTab
-                  mx="8px"
-                  title="Soccer"
-                  subtitle={fetching ? 'Loading ...' : `${data} Matches`}
-                  src={SoccerSrc}
-                  active={this.state.type === 'EPL'}
-                  onClick={() => this.setState({ type: 'EPL' })}
-                />
-              )}
-            </SportCountByTypeFetcher>
-            <SportCountByTypeFetcher type="NBA">
-              {({ fetching, data }) => (
-                <DatasetTab
-                  mx="8px"
-                  title="Basketball"
-                  subtitle={fetching ? 'Loading ...' : `${data} Matches`}
-                  src={BasketballSrc}
-                  active={this.state.type === 'NBA'}
-                  onClick={() => this.setState({ type: 'NBA' })}
-                />
-              )}
-            </SportCountByTypeFetcher>
-            <SportCountByTypeFetcher type="NFL">
-              {({ fetching, data }) => (
-                <DatasetTab
-                  mx="8px"
-                  title="American Football"
-                  subtitle={fetching ? 'Loading ...' : `${data} Matches`}
-                  src={AmericanFootballSrc}
-                  active={this.state.type === 'NFL'}
-                  onClick={() => this.setState({ type: 'NFL' })}
-                />
-              )}
-            </SportCountByTypeFetcher>
-            <SportCountByTypeFetcher type="MLB">
-              {({ fetching, data }) => (
-                <DatasetTab
-                  mx="8px"
-                  title="Baseball"
-                  subtitle={fetching ? 'Loading ...' : `${data} Matches`}
-                  src={BaseballSrc}
-                  active={this.state.type === 'MLB'}
-                  onClick={() => this.setState({ type: 'MLB' })}
-                />
-              )}
-            </SportCountByTypeFetcher>
-          </Flex>
-          <Box mt="24px">
-            <Snippet dataset="sport" />
+          <Box mt="-100px">
+            <Snippet dataset="identity" />
           </Box>
           <Box mt={5}>
+            {/* TODO */}
             <SportByTypeFetcher type={this.state.type}>
               {({ fetching, data }) =>
                 fetching ? (

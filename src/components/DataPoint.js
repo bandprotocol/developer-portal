@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Flex, Box, Text, Card, Image, Button, Heading } from 'rebass'
 import colors from 'ui/colors'
 import AutoDate from 'components/AutoDate'
+import KeySnippet from 'components/KeySnippet'
 
 const DataPointContainer = styled(Card).attrs(p => ({
   variant: 'primary',
@@ -33,12 +34,18 @@ const ExpandableCard = styled(Card)`
 `
 
 export default class DataPoint extends React.Component {
-  state = { expand: false }
+  state = { expand: false, showKey: false }
 
   onCopy() {}
 
+  onShowKey() {
+    this.setState({
+      showKey: true,
+    })
+  }
+
   render() {
-    const { children, label, k, v, updatedAt } = this.props
+    const { children, label, k, v, updatedAt, keyOnChain } = this.props
     return (
       <DataPointContainer mb="20px">
         <Flex
@@ -52,10 +59,19 @@ export default class DataPoint extends React.Component {
               <AutoDate>{updatedAt}</AutoDate>
             </Text>
           </Flex>
-          <Box flex="1">
-            <Text fontFamily="code" fontSize={15} fontWeight="700">
-              {label}
-            </Text>
+          <Box
+            flex="1"
+            onMouseEnter={() => this.setState({ showKey: true })}
+            onMouseLeave={() => this.setState({ showKey: false })}
+            style={{ lineHeight: this.state.showKey ? 'unset' : '40px' }}
+          >
+            {this.state.showKey ? (
+              <KeySnippet keyOnChain={keyOnChain} />
+            ) : (
+              <Text fontFamily="code" fontSize={15} fontWeight="700">
+                {label}
+              </Text>
+            )}
           </Box>
           {v()}
         </Flex>

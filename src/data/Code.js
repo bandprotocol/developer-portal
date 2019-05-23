@@ -106,4 +106,27 @@ query {
   }
 }`,
   },
+  identity: {
+    solidity: `
+interface DataSource {
+  function getQueryPrice() external view returns (uint256);
+  function getAsBool(bytes32 key) external payable returns (bool);
+}
+
+contract IdentityResultContract {
+  DataSource public constant dataSource =
+    DataSource(TODO: add it);
+
+  function checkIdentityResult() internal {
+    bytes32 identityResult = dataSource
+      .getAsBool
+      .value(dataSource.getQueryPrice())("0xe871810225fd2cfD7847319c52F4094958c2f350");
+    assert (identityResult);   // identityResult is True
+  }
+}`,
+    graphql: `
+query {
+  "Work in progress"
+}`,
+  },
 }

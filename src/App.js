@@ -10,6 +10,7 @@ import LandingPage from 'pages/Landing'
 import PriceFeedPage from 'pages/dataset/Price'
 import SportPage from 'pages/dataset/Sport'
 import LotteryPage from 'pages/dataset/Lottery'
+import IdentityPage from 'pages/dataset/Identity'
 import NotFoundPage from 'pages/404'
 
 export default class App extends Component {
@@ -31,6 +32,7 @@ export default class App extends Component {
               <Route exact path="/dataset/price" component={PriceFeedPage} />
               <Route exact path="/dataset/sport" component={SportPage} />
               <Route exact path="/dataset/lottery" component={LotteryPage} />
+              <Route exact path="/dataset/identity" component={IdentityPage} />
               <Route path="/" component={NotFoundPage} />
             </Switch>
           </Router>

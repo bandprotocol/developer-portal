@@ -40,6 +40,7 @@ const allSportByTypeQL = type => `
       sportType
       sportStartTime
       home
+      year
       lastUpdate
     }
   }
@@ -120,13 +121,23 @@ export const SportByTypeFetcher = withRouter(
       } = await Utils.graphqlRequest(allSportByTypeQL(type))
 
       return nodes.map(
-        ({ sportTime, sportStartTime, lastUpdate, ...result }) => ({
+        ({
+          sportTime,
+          sportStartTime,
+          lastUpdate,
+          sportType,
+          year,
+          ...result
+        }) => ({
           time: moment(
             sportTime + (sportStartTime === '9999' ? '0000' : sportStartTime),
             'YYYYMMDDHHm',
           ),
           hasStartTime: sportStartTime !== '9999',
           lastUpdate: moment(lastUpdate * 1000),
+          keyOnChain: `${sportType}${year}/${sportTime}/${result.home}-${
+            result.away
+          }${sportStartTime === '9999' ? '' : '/' + sportStartTime}`,
           ...result,
         }),
       )
