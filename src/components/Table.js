@@ -24,7 +24,7 @@ export const createTable = ({ columns }) =>
     render() {
       const { data, ...props } = this.props
 
-      console.log('DATA', data)
+      // console.log('DATA', data)
 
       return (
         <Box {...props}>
@@ -46,7 +46,7 @@ export const createTable = ({ columns }) =>
               <Flex style={{ lineHeight: '32px' }}>
                 {columns.map(({ label, data, cell = {}, ...p }) => (
                   <Text {...p} {...cell}>
-                    {data(r, i)}
+                    {data(r, i, props)}
                   </Text>
                 ))}
               </Flex>

@@ -28,7 +28,7 @@ import BasketballSrc from 'image/dataset-commodity.jpg'
 import AmericanFootballSrc from 'image/dataset-stock.jpg'
 import BaseballSrc from 'image/dataset-crypto.jpg'
 
-const renderDataPoints = pairs => (
+const renderDataPoints = (pairs, type) => (
   <React.Fragment>
     <Flex>
       <Heading>{pairs.length} Ðata Points</Heading>
@@ -43,6 +43,7 @@ const renderDataPoints = pairs => (
         {pairs.map(({ pair, value, lastUpdate }) => (
           <DataPoint
             key={pair}
+            keyOnChain={pair}
             label={pair}
             k={pair}
             v={() => (
@@ -62,8 +63,8 @@ const renderDataPoints = pairs => (
                 >
                   {value.toLocaleString('en-US', {
                     currency: 'USD',
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
+                    minimumFractionDigits: type === 'FX' ? 4 : 2,
+                    maximumFractionDigits: type === 'FX' ? 4 : 2,
                   })}
                 </Text>
               </Card>
@@ -89,7 +90,7 @@ const renderDataPoints = pairs => (
                 ) : (
                   <React.Fragment>
                     <PriceGraph data={formatPricePairsForGraph(data)} />
-                    <PriceTable mb={2} data={data} />
+                    <PriceTable mb={2} data={data} type={type} />
                   </React.Fragment>
                 )
               }
@@ -191,7 +192,7 @@ export default class PricePage extends React.Component {
                     ]}
                   />
                 ) : (
-                  renderDataPoints(data)
+                  renderDataPoints(data, this.state.type)
                 )
               }
             </CurrentPriceFetcher>

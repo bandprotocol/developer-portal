@@ -8,19 +8,16 @@ import PageContainer from 'components/PageContainer'
 import Snippet from 'components/Snippet'
 import DataPoint from 'components/DataPoint'
 import FlipMove from 'react-flip-move'
-import {
-  SportCountByTypeFetcher,
-  SportByTypeFetcher,
-  SportProvidersByTypeTimeTeamFetcher,
-} from 'data/fetcher/SportFetcher'
-import SportTable from 'components/table/SportTable'
-import DatasetTab from 'components/DatasetTab'
+import { IdentityFetcher } from 'data/fetcher/IdentityFetcher'
 import Loading from 'components/Loading'
+import { ModalConsumer } from 'context/modal'
+import Jazzicon, { jsNumberForAddress } from 'react-jazzicon'
+import IdentityIconSrc from 'image/icon-identity.svg'
 
-const renderDataPoints = (type, matches) => (
+const renderDataPoints = persons => (
   <React.Fragment>
     <Flex>
-      <Heading>{matches.length} Ðata Points</Heading>
+      <Heading>{persons.length} Identities</Heading>
       <Box ml="auto" mr={3}>
         <Text fontSize={26}>
           <ion-icon name="md-search" />
@@ -29,111 +26,30 @@ const renderDataPoints = (type, matches) => (
     </Flex>
     <Box mt={3}>
       <FlipMove>
-        {matches.map(
-          ({
-            lastUpdate,
-            time,
-            hasStartTime,
-            home,
-            away,
-            scoreHome,
-            scoreAway,
-            keyOnChain,
-          }) => (
-            <DataPoint
-              key={time.valueOf()}
-              keyOnChain={keyOnChain}
-              label={`${time.format(
-                hasStartTime ? 'YYYY/MM/DD hh:mm a' : 'YYYY/MM/DD',
-              )}: ${home} - ${away}`}
-              k={time}
-              v={() => (
-                <Flex mr="-20px">
-                  <Card flex="0 0 auto" py={2} px={3}>
-                    <Text
-                      ml="auto"
-                      fontFamily="code"
-                      fontSize={15}
-                      fontWeight="bold"
-                      textAlign="right"
-                      style={{ width: 30 }}
-                    >
-                      {home}
-                    </Text>
-                  </Card>
-                  <Card
-                    flex="0 0 auto"
-                    bg="#6A6B81"
-                    px={1}
-                    borderRadius="3px"
-                    style={{ lineHeight: '36px' }}
-                  >
-                    <Text
-                      fontFamily="code"
-                      fontSize={14}
-                      fontWeight="bold"
-                      textAlign="center"
-                      color="white"
-                      style={{ width: 88 }}
-                    >
-                      {scoreHome} - {scoreAway}
-                    </Text>
-                  </Card>
-                  <Card flex="0 0 auto" py={2} px={3}>
-                    <Text
-                      ml="auto"
-                      fontFamily="code"
-                      fontSize={15}
-                      fontWeight="bold"
-                      textAlign="left"
-                      style={{ width: 30 }}
-                    >
-                      {away}
-                    </Text>
-                  </Card>
-                </Flex>
-              )}
-              updatedAt={lastUpdate}
-            >
-              <SportProvidersByTypeTimeTeamFetcher
-                type={type}
-                time={time.format('YYYYMMDD')}
-                home={home}
-                away={away}
-                startTime={hasStartTime ? time.format('HHmm') : '9999'}
-              >
-                {({ fetching, data }) =>
-                  fetching ? (
-                    <Loading
-                      height={214}
-                      width={922}
-                      rects={[
-                        [24, 6, 922 - 48, 28, 8],
-                        [24, 36 + 8 + 4, 922 - 48, 32 - 8, 8],
-                        [24, 36 + 8 + 4 + 32, 922 - 48, 32 - 8, 8],
-                        [24, 36 + 8 + 4 + 32 * 2, 922 - 48, 32 - 8, 8],
-                        [24, 36 + 8 + 4 + 32 * 3, 922 - 48, 32 - 8, 8],
-                        [24, 36 + 8 + 4 + 32 * 4, 922 - 48, 32 - 8, 8],
-                      ]}
-                    />
-                  ) : (
-                    <React.Fragment>
-                      <SportTable mb={2} data={data} />
-                    </React.Fragment>
-                  )
-                }
-              </SportProvidersByTypeTimeTeamFetcher>
-            </DataPoint>
-          ),
-        )}
+        {persons.map(({ timestamp, userAddress, keyOnChain }) => (
+          <DataPoint
+            key={userAddress}
+            keyOnChain={userAddress}
+            label={userAddress}
+            k={timestamp}
+            v={() => <div />}
+            Logo={() => (
+              <Flex alignItems="center" mr={2}>
+                <Jazzicon
+                  diameter={30}
+                  seed={jsNumberForAddress(userAddress)}
+                />
+              </Flex>
+            )}
+            updatedAt={timestamp}
+          />
+        ))}
       </FlipMove>
     </Box>
   </React.Fragment>
 )
 
-export default class SportPage extends React.Component {
-  state = { type: 'EPL' }
-
+class Identity extends React.Component {
   render() {
     return (
       <PageStructure
@@ -141,19 +57,32 @@ export default class SportPage extends React.Component {
           <Flex alignItems="center" justifyContent="space-between">
             <Box>
               <Text fontSize="36px" fontWeight="900">
-                Identity Events
+                Identity Verification
               </Text>
               <Text fontSize="20px" mt={3}>
-                Trusted Identity by Bandprotocol.
+                Prevent Sybil attack on your DApps via Band Identity Service
               </Text>
             </Box>
             <Button
-              bg="red"
-              width="100px"
-              onClick={() => console.warn('asdhjadf')}
-              style={{ cursor: 'pointer' }}
+              width="240px"
+              py="14px"
+              onClick={() => this.props.setModal('apply/identity')}
+              style={{
+                cursor: 'pointer',
+                backgroundImage: 'linear-gradient(103deg, #fd8f59, #f6387b)',
+              }}
             >
-              Apply
+              <Flex
+                flexDirection="row"
+                alignItems="center"
+                width="100%"
+                justifyContent="space-between"
+              >
+                <Text fontSize="16px" fontWeight="900" color="white">
+                  Apply for an Identity
+                </Text>
+                <Image src={IdentityIconSrc} />
+              </Flex>
             </Button>
           </Flex>
         )}
@@ -164,7 +93,7 @@ export default class SportPage extends React.Component {
           </Box>
           <Box mt={5}>
             {/* TODO */}
-            <SportByTypeFetcher type={this.state.type}>
+            <IdentityFetcher>
               {({ fetching, data }) =>
                 fetching ? (
                   <Loading
@@ -179,13 +108,19 @@ export default class SportPage extends React.Component {
                     ]}
                   />
                 ) : (
-                  renderDataPoints(this.state.type, data)
+                  renderDataPoints(data)
                 )
               }
-            </SportByTypeFetcher>
+            </IdentityFetcher>
           </Box>
         </PageContainer>
       </PageStructure>
     )
   }
 }
+
+export default props => (
+  <ModalConsumer>
+    {({ setModal }) => <Identity setModal={setModal} {...props} />}
+  </ModalConsumer>
+)

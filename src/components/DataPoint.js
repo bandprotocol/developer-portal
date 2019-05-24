@@ -33,46 +33,69 @@ const ExpandableCard = styled(Card)`
   `}
 `
 
-export default class DataPoint extends React.Component {
-  state = { expand: false, showKey: false }
+const MagicBox = styled(Box)`
+  flex: 1;
+  line-height: 30px;
+  margin-right: 10px;
 
-  onCopy() {}
-
-  onShowKey() {
-    this.setState({
-      showKey: true,
-    })
+  .key-snippet {
+    transform: translateY(-50px);
+    transition: all 500ms;
   }
 
+  .label {
+    transform: translateY(-25px);
+    transition: all 500ms;
+  }
+
+  &:hover {
+    .key-snippet {
+      transform: translateY(15px);
+    }
+
+    & > :not(.key-snippet) {
+      transform: translateY(40px);
+    }
+  }
+`
+
+export default class DataPoint extends React.Component {
+  state = { expand: false }
+
   render() {
-    const { children, label, k, v, updatedAt, keyOnChain } = this.props
+    const {
+      children,
+      label,
+      k,
+      v,
+      updatedAt,
+      keyOnChain,
+      Logo = () => <div />,
+    } = this.props
     return (
       <DataPointContainer mb="20px">
         <Flex
           onClick={() => this.setState({ expand: !this.state.expand })}
           px="28px"
           alignItems="center"
-          style={{ height: '60px' }}
+          style={{ height: '60px', overflow: 'hidden' }}
         >
           <Flex flex="0 0 130px" alignItems="center">
             <Text fontFamily="code" fontSize={13} color="light">
               <AutoDate>{updatedAt}</AutoDate>
             </Text>
           </Flex>
-          <Box
-            flex="1"
-            onMouseEnter={() => this.setState({ showKey: true })}
-            onMouseLeave={() => this.setState({ showKey: false })}
-            style={{ lineHeight: this.state.showKey ? 'unset' : '40px' }}
-          >
-            {this.state.showKey ? (
+          <MagicBox>
+            <Box className="key-snippet">
               <KeySnippet keyOnChain={keyOnChain} />
-            ) : (
+            </Box>
+            <Flex flexDirection="row" className="label">
+              <Logo />
               <Text fontFamily="code" fontSize={15} fontWeight="700">
                 {label}
               </Text>
-            )}
-          </Box>
+            </Flex>
+          </MagicBox>
           {v()}
         </Flex>
         {children && (

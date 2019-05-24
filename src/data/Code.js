@@ -115,18 +115,27 @@ interface DataSource {
 
 contract IdentityResultContract {
   DataSource public constant dataSource =
-    DataSource(TODO: add it);
+    DataSource(0x70c94DB857f154BA6cC4c44f984f52725637A86e);
 
   function checkIdentityResult() internal {
-    bytes32 identityResult = dataSource
+    bool identityResult = dataSource
       .getAsBool
-      .value(dataSource.getQueryPrice())("0xe871810225fd2cfD7847319c52F4094958c2f350");
+      .value(dataSource.getQueryPrice())(bytes32(bytes20(0xe871810225fd2cfD7847319c52F4094958c2f350)));
     assert (identityResult);   // identityResult is True
   }
 }`,
     graphql: `
 query {
-  "Work in progress"
-}`,
+  allDataIdentityFeedRaws(condition: { 
+    userAddress: "0x8208940da3bdefe1d3e4b5ee5d4eebf19aae0468000000000000000000000000"
+    }) {
+    nodes {
+      userAddress
+      twitterId
+      timestamp
+    }
+  }
+}
+`,
   },
 }

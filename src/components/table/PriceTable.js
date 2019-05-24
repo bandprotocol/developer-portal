@@ -39,11 +39,11 @@ export default createTable({
     },
     {
       cell: { fontFamily: 'code' },
-      data: d =>
+      data: (d, i, { type }) =>
         d.lastValue.toLocaleString('en-US', {
           currency: 'USD',
-          minimumFractionDigits: 2,
-          maximumFractionDigits: 2,
+          minimumFractionDigits: type === 'FX' ? 4 : 2,
+          maximumFractionDigits: type === 'FX' ? 4 : 2,
         }),
       label: 'Price',
       flex: '0 0 100px',

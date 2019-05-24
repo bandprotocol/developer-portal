@@ -11,10 +11,13 @@ import Snippet from 'components/Snippet'
 import { LotteryCountAllFetcher } from 'data/fetcher/LotteryFetcher'
 import { CurrentPriceFetcher } from 'data/fetcher/PriceFetcher'
 import { SportCountAllFetcher } from 'data/fetcher/SportFetcher'
+import { IdentityCountFetcher } from 'data/fetcher/IdentityFetcher'
 
 import LotterySrc from 'image/dataset-lottery.svg'
 import PriceSrc from 'image/dataset-price.svg'
 import SportSrc from 'image/dataset-sport.svg'
+import IdentitySrc from 'image/dataset-Identity.png'
+
 import GithubSrc from 'image/github.svg'
 import ArrowRightSrc from 'image/arrow-right.svg'
 import ArrowRightDarkSrc from 'image/arrow-right-dark.svg'
@@ -80,11 +83,14 @@ const DataPreview = props => (
 
 const DatasetStack = styled(Box).attrs(p => ({
   mx: 3,
+  my: 3,
   flex: 1,
 }))`
   position: relative;
   transition: all 250ms;
   transform: perspective(0) rotateX(0) scale(1);
+  min-width: 285px;
+  max-width: 285px;
 
   &:hover {
     transform: perspective(100em) rotateX(9deg) scale(1.04) translateY(-3%);
@@ -257,7 +263,12 @@ export default props => (
           Ðecentralized Ðatasets
         </Text>
 
-        <Flex mx="-16px" style={{ color: colors.text.normal }}>
+        <Flex
+          mx="-16px"
+          style={{ color: colors.text.normal }}
+          flexDirection="row"
+          flexWrap="wrap"
+        >
           <CurrentPriceFetcher type="ALL">
             {({ fetching, data }) => (
               <Dataset
@@ -289,6 +300,16 @@ export default props => (
               />
             )}
           </LotteryCountAllFetcher>
+          <IdentityCountFetcher>
+            {({ fetching, data }) => (
+              <Dataset
+                title="Identity"
+                subtitle={fetching ? `... Identities` : `${data} Identities`}
+                src={IdentitySrc}
+                to="/dataset/identity"
+              />
+            )}
+          </IdentityCountFetcher>
         </Flex>
 
         <Box mt={6}>

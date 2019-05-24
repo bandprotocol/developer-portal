@@ -14,7 +14,7 @@ const QueryBox = styled(Flex).attrs({
 
 const Container = styled(Flex).attrs({
   flexDirection: 'row',
-  py: '10px',
+  py: '5px',
   alignItems: 'center',
 })`
   border-radius: 4px;
