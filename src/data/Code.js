@@ -115,7 +115,7 @@ interface DataSource {
 
 contract IdentityResultContract {
   DataSource public constant dataSource =
-    DataSource(0x70c94DB857f154BA6cC4c44f984f52725637A86e);
+    DataSource(0x616aa37B3e630fce6d96Abc2Afa767aa98280743);
 
   function checkIdentityResult() internal {
     bool identityResult = dataSource
