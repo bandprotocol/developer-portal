@@ -6,8 +6,8 @@ const QueryBox = styled(Flex).attrs({
   alignItems: 'center',
   bg: '#6A6B81',
   px: '8px',
-  py: '4px',
-  mx: '10px',
+  ml: '5px',
+  mr: '10px',
 })`
   border-radius: 3px;
 `
@@ -15,10 +15,13 @@ const QueryBox = styled(Flex).attrs({
 const Container = styled(Flex).attrs({
   flexDirection: 'row',
   py: '5px',
+  pr: '20px',
   alignItems: 'center',
 })`
   border-radius: 4px;
-  border: 1px solid #bcbcbc;
+  border: 1px solid #e5e6f5;
+  height: 40px;
+  min-width: 400px;
 `
 
 export default class KeySnippet extends React.Component {
@@ -49,10 +52,10 @@ export default class KeySnippet extends React.Component {
       <Container>
         <QueryBox>
           <Text fontSize="14px" color="white" fontWeight="700">
-            Query
+            Key
           </Text>
         </QueryBox>
-        <Text fontSize="14px" fontWeight="500">
+        <Text fontFamily="code" fontSize="14px" fontWeight="500">
           {keyOnChain}
         </Text>
         {/* <Text

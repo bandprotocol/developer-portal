@@ -37,24 +37,32 @@ const MagicBox = styled(Box)`
   flex: 1;
   line-height: 30px;
   margin-right: 10px;
+  position: relative;
+  height: 60px;
 
   .key-snippet {
-    transform: translateY(-50px);
-    transition: all 500ms;
+    position: absolute;
+    top: 10px;
+    opacity: 0;
+    transition: all 150ms;
+    z-index: 1;
+    background: #ffffff;
   }
 
   .label {
-    transform: translateY(-25px);
-    transition: all 500ms;
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    line-height: 60px;
   }
 
   &:hover {
     .key-snippet {
-      transform: translateY(15px);
+      opacity: 1;
     }
 
-    & > :not(.key-snippet) {
-      transform: translateY(40px);
+    .label {
+      opacity: 0.9;
     }
   }
 `
