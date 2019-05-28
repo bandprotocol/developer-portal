@@ -129,6 +129,7 @@ export const LotteryByTypeFetcher = withRouter(
       return nodes.map(({ lotteryTime, lastUpdate, ...ballResult }) => ({
         time: moment(lotteryTime, 'YYYYMMDD'),
         lastUpdate: moment(lastUpdate * 1000),
+        keyOnChain: `${type}/${lotteryTime}`,
         ...ballResult,
       }))
     }

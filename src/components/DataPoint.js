@@ -84,7 +84,7 @@ export default class DataPoint extends React.Component {
       <DataPointContainer mb="20px">
         <Flex
           onClick={() => this.setState({ expand: !this.state.expand })}
-          px="28px"
+          px="18px"
           alignItems="center"
           style={{ height: '60px', overflow: 'hidden' }}
         >

@@ -19,14 +19,12 @@ import {
 import PriceTable from 'components/table/PriceTable'
 import Loading from 'components/Loading'
 
-import PriceHeaderSrc from 'image/dataset-price-header.svg'
-import HeaderBGSrc from 'image/header-bg.svg'
-
 // Image
-import SoccerSrc from 'image/dataset-fiat.jpg'
-import BasketballSrc from 'image/dataset-commodity.jpg'
-import AmericanFootballSrc from 'image/dataset-stock.jpg'
-import BaseballSrc from 'image/dataset-crypto.jpg'
+import PriceHeaderSrc from 'image/dataset-price-header.svg'
+import SoccerSrc from 'image/dataset-fiat.png'
+import BasketballSrc from 'image/dataset-commodity.png'
+import AmericanFootballSrc from 'image/dataset-stock.png'
+import BaseballSrc from 'image/dataset-crypto.png'
 
 const renderDataPoints = (pairs, type) => (
   <React.Fragment>

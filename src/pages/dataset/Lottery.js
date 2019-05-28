@@ -60,10 +60,12 @@ const renderDataPoints = (type, lotteries) => (
             whiteBall4,
             whiteBall5,
             mul,
+            keyOnChain,
           }) => (
             <DataPoint
               key={time.valueOf()}
               label={time.format('ddd, MMMM DD YYYY')}
+              keyOnChain={keyOnChain}
               k={time}
               v={() => (
                 <Flex alignItems="center" mr="-8px">
